@@ -8,3 +8,5 @@ mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
+afterAll(() => mongoose.disconnect());

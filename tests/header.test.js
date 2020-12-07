@@ -16,7 +16,7 @@ afterEach(async () => {
 
 ///////////////////////////////////////////////////////////
 test('logo is verified', async () => {
-  const text = await page.$eval('a.brand-logo', (el) => el.innerHTML);
+  const text = await page.getInnerHTMLOf('a.brand-logo');
 
   expect(text).toEqual('Blogster');
 });
@@ -34,7 +34,7 @@ test('clicking login initiates auth workflow', async () => {
 test('logout button selector shows when logged in', async () => {
   const selectorLogout = 'a[href="/auth/logout"]';
   await page.login(selectorLogout);
-  const text = await page.$eval(selectorLogout, (el) => el.innerHTML);
+  const text = await page.getInnerHTMLOf(selectorLogout);
   expect(text).toBeDefined();
   expect(text).toEqual('Logout');
 });

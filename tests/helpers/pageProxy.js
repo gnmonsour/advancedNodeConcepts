@@ -38,6 +38,12 @@ class PageProxy {
 
     await this.page.waitForSelector(selectorLogout);
   }
+
+  ///////////////////////////////////////////////////////////i
+  getInnerHTMLOf(selector) {
+    // returns promise
+    return this.page.$eval(selector, (el) => el.innerHTML);
+  }
 }
 
 ///////////////////////////////////////////////////////////

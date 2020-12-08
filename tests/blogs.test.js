@@ -68,4 +68,21 @@ describe('When Logged In', () => {
     });
   });
 });
+
+///////////////////////////////////////////////////////////
+describe('When NOT logged in', () => {
+  test(' - unauthorized error message returned when posting blog', async () => {
+    const result = await page.post('/api/blogs', {
+      title: 'Mock Title',
+      content: 'Mock Content',
+    });
+    expect(result).toEqual({ error: 'You must log in!' });
+  });
+
+  test(' - unauthorized error message returned when viewing blog', async () => {
+    const result = await page.get('/api/blogs');
+    expect(result).toEqual({ error: 'You must log in!' });
+  });
+});
+
 ///////////////////////////////////////////////////////////

@@ -21,6 +21,10 @@ class PageProxy {
     // wrap this in a meta object
     return new Proxy(pageProxy, {
       get: function (target, property) {
+        if (property === 'close' && pageProxy.user !== undefined) {
+          // console.log(`close called, deleting user: ${pageProxy.user._id}`);
+          userFactory.deleteUser(pageProxy.user._id);
+        }
         // order is important, consider condition test of property if result slides
         return pageProxy[property] || browser[property] || page[property];
       },
@@ -29,8 +33,8 @@ class PageProxy {
 
   ///////////////////////////////////////////////////////////
   async login(selectorLogout) {
-    const user = await userFactory();
-    const { session, sig } = sessionFactory(user);
+    this.user = await userFactory.createUser();
+    const { session, sig } = sessionFactory(this.user);
 
     await this.page.setCookie({ name: 'session', value: session });
     await this.page.setCookie({ name: 'session.sig', value: sig });

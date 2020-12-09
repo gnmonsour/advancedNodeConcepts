@@ -70,18 +70,38 @@ describe('When Logged In', () => {
 });
 
 ///////////////////////////////////////////////////////////
-describe('When NOT logged in', () => {
-  test(' - unauthorized error message returned when posting blog', async () => {
-    const result = await page.post('/api/blogs', {
-      title: 'Mock Title',
-      content: 'Mock Content',
-    });
-    expect(result).toEqual({ error: 'You must log in!' });
-  });
+describe('When NOT authorized', () => {
+  const actions = [
+    {
+      method: 'get',
+      path: '/api/blogs',
+    },
+    {
+      method: 'post',
+      path: '/api/blogs',
+      data: { title: 'Mock Title', content: 'Mock Content' },
+    },
+  ];
 
-  test(' - unauthorized error message returned when viewing blog', async () => {
-    const result = await page.get('/api/blogs');
-    expect(result).toEqual({ error: 'You must log in!' });
+  test(' - receive error for unauthorized blog actions', async () => {
+    const results = await page.execRequests(actions);
+
+    for (let result of results) {
+      expect(result).toEqual({ error: 'You must log in!' });
+    }
+
+    // test(' - unauthorized error message returned when posting blog', async () => {
+    //   const result = await page.post('/api/blogs', {
+    //     title: 'Mock Title',
+    //     content: 'Mock Content',
+    //   });
+    //   expect(result).toEqual({ error: 'You must log in!' });
+    // });
+
+    // test(' - unauthorized error message returned when viewing blog', async () => {
+    //   const result = await page.get('/api/blogs');
+    //   expect(result).toEqual({ error: 'You must log in!' });
+    // });
   });
 });
 

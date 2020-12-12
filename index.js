@@ -15,6 +15,7 @@ mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
+  useFindAndModify: false,
 });
 const db = mongoose.connection;
 db.on('error', (err) => console.log('mongooseConnection', err));

@@ -6,7 +6,7 @@ let page;
 ///////////////////////////////////////////////////////////
 beforeEach(async () => {
   page = await PageProxy.build();
-  await page.goto('localhost:3000');
+  await page.goto('http://localhost:3000');
 });
 
 ///////////////////////////////////////////////////////////

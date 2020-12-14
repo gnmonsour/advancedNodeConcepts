@@ -11,6 +11,7 @@ class BlogShow extends Component {
     if (this.props.blog.imagePath) {
       return (
         <img
+          alt=''
           width='60%'
           src={
             'https://blogster-dev.s3.ca-central-1.amazonaws.com/' +

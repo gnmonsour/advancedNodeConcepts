@@ -7,6 +7,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
 });
 
 afterAll(() => mongoose.disconnect());

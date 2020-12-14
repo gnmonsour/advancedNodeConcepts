@@ -145,3 +145,21 @@ script:
 - Added `ci` environment to the express server path includes so `client/build` path is visible.
 - Ensured all urls for services include prefix `http://`.
 - Switched puppeteer launch to `headless: true` and added `args: ['--no-sandbox']` to the pageProxy build statement.
+
+## AWS setup
+
+Aim: do not store credentials
+
+bucket name: blogster-dev
+region: ca-central-1
+
+policy: blogster-s3-policy
+user: s3-blogster-dev
+
+access-key id and secret access-key hidden in dev config (not uploaded)
+
+install aws-sdk
+
+create route to get the pre-signed url
+
+- s3.getSignedUrl('putObject', {}, )

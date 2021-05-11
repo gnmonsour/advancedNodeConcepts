@@ -125,8 +125,11 @@ nohup.out
 !.vscode/extensions.json
 *.code-workspace
 
+
+config/dev.js
+package-lock.json
+
 # End of https://www.toptal.com/developers/gitignore/api/node,nohup,vscode
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
-config/dev.js
